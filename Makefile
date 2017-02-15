@@ -106,6 +106,17 @@ import-sql-dev:
 import-osm-dev:
 	docker-compose run --rm import-osm /bin/bash
 
+download-planet:
+	@echo ===============  download-planet =======================
+	@echo Download area :   $(area)
+	@echo [[ example: make download-planet  area=planet-latest ]]
+	docker-compose run --rm import-osm  ./download-planet.sh $(area)
+	ls -la ./data/$(area).*
+	@echo "Generated config file: ./data/docker-compose-config.yml"
+	@echo " "
+	cat ./data/docker-compose-config.yml
+	@echo " "
+
 download-geofabrik:
 	@echo ===============  download-geofabrik =======================
 	@echo Download area :   $(area)
